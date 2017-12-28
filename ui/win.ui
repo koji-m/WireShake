@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkApplicationWindow" id="window">
+    <property name="default-width">1024</property>
+    <property name="default-height">768</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header-menubar">
+        <property name="visible">True</property>
+        <property name="show_close_button">True</property>
+        <child>
+          <object class="GtkMenuButton" id="start-button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="image">start-capture-image</property>
+            <property name="action_name">win.start-capture</property>
+          </object>
+          <packing>
+            <property name="pack_type">start</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="stop-button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="image">stop-capture-image</property>
+            <property name="action_name">win.stop-capture</property>
+          </object>
+          <packing>
+            <property name="pack_type">start</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBoxText" id="if-combobox">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+          </object>
+          <packing>
+            <property name="pack_type">start</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkPaned" id="pane">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="position">384</property>
+        <child>
+          <object class="GtkScrolledWindow" id="list_window">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkTreeView" id="list_view">
+                <property name="visible">True</property>
+                <property name="model">list-store</property>
+                <child>
+                  <object class="GtkTreeViewColumn" id="number-column">
+                    <property name="title">No.</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="number-renderer" />
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="time-column">
+                    <property name="title">Time</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="time-renderer" />
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="src-column">
+                    <property name="title">Source</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="src-renderer" />
+                      <attributes>
+                        <attribute name="text">2</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="dst-column">
+                    <property name="title">Destination</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="dst-renderer" />
+                      <attributes>
+                        <attribute name="text">3</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="proto-column">
+                    <property name="title">Protocol</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="proto-renderer" />
+                      <attributes>
+                        <attribute name="text">4</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="len-column">
+                    <property name="title">Length</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="len-renderer" />
+                      <attributes>
+                        <attribute name="text">5</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="info-column">
+                    <property name="title">Info</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="info-renderer" />
+                      <attributes>
+                        <attribute name="text">6</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="selection">
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="detail_window">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkTreeView" id="detail_view">
+                <property name="visible">True</property>
+                <property name="model">detail-store</property>
+                <child>
+                  <object class="GtkTreeViewColumn" id="detail-column">
+                    <property name="title">Detail</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="detail-renderer" />
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkListStore" id="list-store">
+    <columns>
+      <column type="guint" /> <!-- No. -->
+      <column type="gchararray" /> <!-- Time -->
+      <column type="gchararray" /> <!-- Source -->
+      <column type="gchararray" /> <!-- Destination -->
+      <column type="gchararray" /> <!-- Protocol -->
+      <column type="guint" /> <!-- Length -->
+      <column type="gchararray" /> <!-- Info -->
+      <column type="gchararray" /> <!-- TreeData -->
+      </columns>
+  </object>
+  <object class="GtkTreeStore" id="detail-store">
+    <columns>
+      <column type="gchararray" /> <!-- Detail -->
+    </columns>
+  </object>
+  <object class="GtkImage" id="start-capture-image">
+    <property name="visible">True</property>
+    <property name="tooltip_text">Start capture</property>
+    <property name="icon_name">media-playback-start</property>
+  </object>
+  <object class="GtkImage" id="stop-capture-image">
+    <property name="visible">True</property>
+    <property name="tooltip_text">Stop capture</property>
+    <property name="icon_name">media-playback-stop</property>
+  </object>
+</interface>
+

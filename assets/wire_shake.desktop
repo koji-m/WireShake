@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=WireShake
+Comment=A simple LAN analyzer
+Exec=sudo /usr/bin/wire_shake
+Icon=wire_shake
+Terminal=false
+

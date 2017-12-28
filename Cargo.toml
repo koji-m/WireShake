@@ -1,0 +1,18 @@
+[package]
+name = "wire_shake"
+version = "0.1.0"
+authors = ["Koji Matsumoto <otomustam.ijok@gmail.com>"]
+
+[dependencies]
+gio= "0.2.0"
+pcap = "0.7.0"
+libc = "0.2.34"
+byteorder = "1.2.1"
+time = "0.1.38"
+sexp = "1.1.4"
+guile-sys = "0.1.1"
+
+[dependencies.gtk]
+version = "0.2.0"
+features = ["v3_16"]
+
